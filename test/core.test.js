@@ -11,4 +11,11 @@ describe('provide infrastructure for module', () => {
     const core = new Core(fn);
     expect(core.sandbox).toBe(fn);
   });
+
+  it('should gather modules in a list for management ', () => {
+    const core = new Core();
+    const module = jest.fn();
+    core.register(module ,'module1')
+    expect(core.modulesList['module1']).toBe(module);
+  });
 });
