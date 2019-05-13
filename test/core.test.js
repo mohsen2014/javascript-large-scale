@@ -1,4 +1,7 @@
 import Core from './../src/core';
+import Module from './../src/module';
+
+jest.mock('./../src/module');
 
 describe('provide infrastructure for module', () => {
   it('should impliment core class', () => {
@@ -18,4 +21,16 @@ describe('provide infrastructure for module', () => {
     core.register(module ,'module1')
     expect(core.modulesList['module1']).toBe(module);
   });
+
+  it('should start single module', () => {
+    const core = new Core();
+    Module.mockImplementation(() => {
+      return {start: jest.fn()}
+    });
+    core.register(Module ,'module1');
+    const instance = core.start('module1');
+    expect(instance.start).toHaveBeenCalled();
+  });
+
+  
 });
