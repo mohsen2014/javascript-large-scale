@@ -19,7 +19,7 @@ describe('provide infrastructure for module', () => {
     const core = new Core();
     const module = jest.fn();
     core.register(module ,'module1')
-    expect(core.modulesList['module1']).toBe(module);
+    expect(core.modulesList['module1']).toBeInstanceOf(module);
   });
 
   it('should start single module', () => {
@@ -28,9 +28,17 @@ describe('provide infrastructure for module', () => {
       return {start: jest.fn()}
     });
     core.register(Module ,'module1');
-    const instance = core.start('module1');
-    expect(instance.start).toHaveBeenCalled();
+    core.start('module1');
+    expect(core.modulesList['module1'].start).toHaveBeenCalled();
   });
 
-  
+  // it('should stop single module', () => {
+  //   const core = new Core();
+  //   Module.mockImplementation(() => {
+  //     return {stop: jest.fn()}
+  //   });
+  //   core.register(Module ,'module1');
+  //   const instance = core.stop('module1');
+  //   expect(instance.stop).toHaveBeenCalled();
+  // });
 });

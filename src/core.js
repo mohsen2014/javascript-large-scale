@@ -7,10 +7,14 @@ export default class Core {
   }
 
   register(module ,moduleName){
-    this.modulesList[moduleName] = module;
+    this.modulesList[moduleName] = new module();
   }
 
   start(moduleName){
+    this.modulesList[moduleName].start();
+  }
+
+  stop(moduleName){
     const module = new this.modulesList[moduleName]();
     module.start();
     return module;
