@@ -6,5 +6,9 @@ describe('provide infrastructure for module', () => {
     expect(core).toBeInstanceOf(Core);
   });
 
-
+  it('should accept an object as sandbox', () => {
+    var fn = jest.fn();
+    const core = new Core(fn);
+    expect(core.sandbox).toBe(fn);
+  });
 });

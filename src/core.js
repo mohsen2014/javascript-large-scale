@@ -1,5 +1,5 @@
 export default class Core {
-  constructor(){
-    
+  constructor(sandbox){
+    this.sandbox = sandbox
   }
 }
