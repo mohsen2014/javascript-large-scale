@@ -1,7 +1,6 @@
 import Core from './../src/core';
 import Module from './../src/module';
 
-jest.mock('./../src/module');
 
 describe('provide infrastructure for module', () => {
   it('should impliment core class', () => {
@@ -24,6 +23,7 @@ describe('provide infrastructure for module', () => {
 
   it('should start single module', () => {
     const core = new Core();
+    const Module = jest.fn();
     Module.mockImplementation(() => {
       return {start: jest.fn()}
     });
@@ -32,14 +32,21 @@ describe('provide infrastructure for module', () => {
     expect(core.modulesList['module1'].start).toHaveBeenCalled();
   });
 
-  it('should stop single module', () => {
+  // it('should stop single module', () => {
+  //   const core = new Core();
+  //   Module.mockImplementation(() => {
+  //     return {stop: jest.fn()}
+  //   });
+  //   core.register(Module ,'module1');
+  //   core.stop('module1');
+  //   expect(core.modulesList['module1'].stop).toHaveBeenCalled();
+  // });
+
+  it('should remove instance from list after stop module', () => {
     const core = new Core();
-    Module.mockImplementation(() => {
-      return {stop: jest.fn()}
-    });
     core.register(Module ,'module1');
     core.stop('module1');
-    expect(core.modulesList['module1'].stop).toHaveBeenCalled();
+    expect(core.modulesList['module1']).toBe(undefined);
+    expect(core.modulesList).toEqual({});
   });
-
 });

@@ -14,8 +14,8 @@ export default class Core {
     this.modulesList[moduleName].start();
   }
 
-  stop(moduleName){
+  stop(moduleName){console.log(this.modulesList[moduleName].stop)
     this.modulesList[moduleName].stop();
-    
+    delete this.modulesList[moduleName];
   }
 }
