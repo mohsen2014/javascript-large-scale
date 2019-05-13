@@ -15,8 +15,7 @@ export default class Core {
   }
 
   stop(moduleName){
-    const module = new this.modulesList[moduleName]();
-    module.start();
-    return module;
+    this.modulesList[moduleName].stop();
+    
   }
 }

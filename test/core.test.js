@@ -32,13 +32,14 @@ describe('provide infrastructure for module', () => {
     expect(core.modulesList['module1'].start).toHaveBeenCalled();
   });
 
-  // it('should stop single module', () => {
-  //   const core = new Core();
-  //   Module.mockImplementation(() => {
-  //     return {stop: jest.fn()}
-  //   });
-  //   core.register(Module ,'module1');
-  //   const instance = core.stop('module1');
-  //   expect(instance.stop).toHaveBeenCalled();
-  // });
+  it('should stop single module', () => {
+    const core = new Core();
+    Module.mockImplementation(() => {
+      return {stop: jest.fn()}
+    });
+    core.register(Module ,'module1');
+    core.stop('module1');
+    expect(core.modulesList['module1'].stop).toHaveBeenCalled();
+  });
+
 });
