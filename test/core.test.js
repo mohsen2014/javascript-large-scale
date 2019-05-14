@@ -3,7 +3,7 @@ import Module from './../src/module';
 
 
 describe('provide infrastructure for module', () => {
-  it('should impliment core class', () => {
+  it('should implement core class', () => {
     const core = new Core();
     expect(core).toBeInstanceOf(Core);
   });
