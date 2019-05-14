@@ -3,7 +3,7 @@ export default class Core {
   constructor(sandbox){
     this.sandbox = sandbox;
     this.modulesList = {};
-
+    this.extensions = {};
   }
 
   register(module ,moduleName){
@@ -14,8 +14,16 @@ export default class Core {
     this.modulesList[moduleName].start();
   }
 
-  stop(moduleName){console.log(this.modulesList[moduleName].stop)
+  stop(moduleName){
     this.modulesList[moduleName].stop();
     delete this.modulesList[moduleName];
+  }
+
+  use(exetnsionName, _object){
+    this.extensions[exetnsionName] = _object;
+  }
+  
+  getExtension(exetnsionName){
+    return this.extensions[exetnsionName];
   }
 }

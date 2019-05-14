@@ -39,4 +39,11 @@ describe('provide infrastructure for module', () => {
     expect(core.modulesList['module1']).toBe(undefined);
     expect(core.modulesList).toEqual({});
   });
+
+  it('should be able to register an extension on the core', () => {
+    const core = new Core();
+    const fn = jest.fn();
+    core.use('$', fn);
+    expect(core.getExtension('$')).toBe(fn);
+  });
 });
