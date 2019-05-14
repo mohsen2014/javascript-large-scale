@@ -5,6 +5,8 @@ describe('sandbox', () => {
   it('should accept core in the constructor', () => {
     const core = new Core();
     const sandbox = new Sandbox(core);
-    expect(sandbox.core).toBe(core);
+    expect(sandbox._core).toBe(core);
   });
+
+  
 });

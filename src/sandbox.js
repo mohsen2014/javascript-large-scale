@@ -1,7 +1,6 @@
 export default class Sandbox{
   constructor(core){
-    this.core = core;
+    this._core = core;
   }
 
-  
 }
