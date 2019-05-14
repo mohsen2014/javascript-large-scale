@@ -32,16 +32,6 @@ describe('provide infrastructure for module', () => {
     expect(core.modulesList['module1'].start).toHaveBeenCalled();
   });
 
-  // it('should stop single module', () => {
-  //   const core = new Core();
-  //   Module.mockImplementation(() => {
-  //     return {stop: jest.fn()}
-  //   });
-  //   core.register(Module ,'module1');
-  //   core.stop('module1');
-  //   expect(core.modulesList['module1'].stop).toHaveBeenCalled();
-  // });
-
   it('should remove instance from list after stop module', () => {
     const core = new Core();
     core.register(Module ,'module1');
