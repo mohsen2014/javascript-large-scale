@@ -12,6 +12,8 @@ export default class Core {
 
   start(moduleName){
     this.modulesList[moduleName].start();
+
+    this.render(this.modulesList[moduleName].view);
   }
 
   stop(moduleName){
@@ -25,5 +27,12 @@ export default class Core {
   
   getExtension(exetnsionName){
     return this.extensions[exetnsionName];
+  }
+
+  render(model) {
+
+    let $ = this.getExtension("jquery");
+    $.append("body", model);
+
   }
 }

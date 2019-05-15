@@ -5,6 +5,15 @@ describe('Name of the group', () => {
   beforeEach(() => {
     module = new Module()    
   });
+
+  it("should have a view", () => {
+
+    expect(module.view).toBeDefined();
+    expect(typeof module.view).toBe("string");
+
+  });
+
+
   it('should call constructor ', () => {
     expect(module).toBeInstanceOf(Module)
   });

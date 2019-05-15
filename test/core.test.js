@@ -1,6 +1,7 @@
 import Core from './../src/core';
 import Module from './../src/module';
-
+import Jquery from "./../src/jquery.extension";
+import $ from 'jquery';
 
 describe('provide infrastructure for module', () => {
   it('should implement core class', () => {
@@ -21,8 +22,25 @@ describe('provide infrastructure for module', () => {
     expect(core.modulesList['module1']).toBeInstanceOf(module);
   });
 
+  it("should render provided argument inside DOM", () => {
+
+    const core = new Core();
+    let jquery = new Jquery();
+    core.use("jquery", jquery);
+
+    const model = "<a></a>";
+
+    core.render(model);
+
+    expect($("a").length).toBe(1);
+
+  });
+
   it('should start single module', () => {
     const core = new Core();
+    let jquery = new Jquery();
+    core.use("jquery", jquery);
+
     const Module = jest.fn();
     Module.mockImplementation(() => {
       return {start: jest.fn()}
@@ -30,6 +48,28 @@ describe('provide infrastructure for module', () => {
     core.register(Module ,'module1');
     core.start('module1');
     expect(core.modulesList['module1'].start).toHaveBeenCalled();
+  });
+
+  it("should render after starting module", () => {
+
+    const view = "asd";
+
+    const core = new Core();
+
+    core.render = jest.fn();
+
+    const Module = jest.fn();
+    Module.mockImplementation(() => {
+      return {
+        start: jest.fn(),
+        view: view
+      }
+    });
+
+    core.register(Module ,'module1');
+    core.start('module1');
+
+    expect(core.render).toHaveBeenCalledWith(view);
   });
 
   it('should remove instance from list after stop module', () => {
