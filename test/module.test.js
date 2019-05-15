@@ -1,4 +1,5 @@
-import Module from './../src/module'
+import Module from './../src/module';
+
 describe('Name of the group', () => {
   let module;
   beforeEach(() => {
@@ -21,4 +22,27 @@ describe('Name of the group', () => {
   it('should exist stop method', () => {
     expect(module.stop).not.toBe(undefined);
   });
+
+  it('should use findElement ', () => {
+    const Sandbox = jest.fn();
+    Sandbox.mockImplementation(() => {
+      return {findElement: jest.fn()}
+    });
+    const module = new Module(new Sandbox());
+    module.findElement();
+    
+    expect(module.sandbox.findElement).toHaveBeenCalled();
+  })
+
+  it('should use findElement with a parameter as the selector ', () => {
+    const Sandbox = jest.fn();
+    Sandbox.mockImplementation(() => {
+      return {findElement: jest.fn()}
+    });
+    const module = new Module(new Sandbox());
+    const selector = 'selector';
+    module.findElement(selector);
+    
+    expect(module.sandbox.findElement).toHaveBeenCalledWith(selector);
+  })
 });

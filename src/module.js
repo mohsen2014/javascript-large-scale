@@ -9,5 +9,9 @@ export default class Module{
   stop(){
 
   }
+
+  findElement( selector ) {
+    this.sandbox.findElement(selector);
+  }
   
 }
