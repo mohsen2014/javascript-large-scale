@@ -10,7 +10,7 @@ export default class Module{
 
   }
 
-  findElement( selector ) {
+  onClick( selector ) {
     this.sandbox.findElement(selector);
   }
   

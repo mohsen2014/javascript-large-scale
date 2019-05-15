@@ -29,7 +29,7 @@ describe('Name of the group', () => {
       return {findElement: jest.fn()}
     });
     const module = new Module(new Sandbox());
-    module.findElement();
+    module.onClick();
     
     expect(module.sandbox.findElement).toHaveBeenCalled();
   })
@@ -41,7 +41,7 @@ describe('Name of the group', () => {
     });
     const module = new Module(new Sandbox());
     const selector = 'selector';
-    module.findElement(selector);
+    module.onClick(selector);
     
     expect(module.sandbox.findElement).toHaveBeenCalledWith(selector);
   })
