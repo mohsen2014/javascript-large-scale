@@ -13,7 +13,7 @@ describe('sandbox', () => {
   it('shoud have find element', () => {
     const sandbox = new Sandbox();
     Sandbox.findElement = jest.fn();
-    
+
     expect(sandbox.findElement).toBeDefined();
   })
 
@@ -24,5 +24,15 @@ describe('sandbox', () => {
     sandbox.findElement();
     
     expect(sandbox._core.getExtension('$').find).toHaveBeenCalled();
+  })
+
+  it('should findElement accept a parameter as the selector', () => {
+    const core = new Core();
+    core.use('$', {find: jest.fn()});
+    const sandbox = new Sandbox(core);
+    const selector = 'selector';
+    sandbox.findElement(selector);
+    
+    expect(sandbox._core.getExtension('$').find).toHaveBeenCalledWith(selector);
   })
 });
