@@ -3,6 +3,6 @@ export default class Sandbox{
     this._core = core;
   }
   findElement () {
-
+    this._core.getExtension('$').find();
   }
 }
