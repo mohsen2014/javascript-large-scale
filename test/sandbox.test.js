@@ -8,5 +8,9 @@ describe('sandbox', () => {
     expect(sandbox._core).toBe(core);
   });
 
-  
+  it('shoud have find element', () => {
+    const sandbox = new Sandbox();
+    Sandbox.findElement = jest.fn();
+    expect(sandbox.findElement).toBeDefined();
+  })
 });
