@@ -1,6 +1,7 @@
 import Core from "../src/core";
 import Sandbox from '../src/sandbox';
 
+// TODO: We should mock core in the future
 //jest.mock('../src/core');
 
 describe('sandbox', () => {
